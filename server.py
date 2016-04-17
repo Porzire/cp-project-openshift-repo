@@ -10,14 +10,17 @@ from tornado.options import options as opts
 import service
 
 
-class Server(object):
+class Service(object):
 
     def __init__(self):
-        webapp = service.LoadService({'debug': True})
-        self._server = httpserver.HTTPServer(webapp)
+        self._webapp = service.LoadService({'debug': True})
 
     def start(self, port, ip):
-        self._server.listen(port, ip)
+        print port
+        print type(port)
+        print ip
+        print type(ip)
+        self._webapp.listen(port, ip)
         try:
             logging.info('Initialize service.')
             ioloop.IOLoop.current().start()
@@ -25,8 +28,9 @@ class Server(object):
             logging.info('Terminate service.')
 
 
-server = Server()
+service = Service()
 
 
 if __name__ == '__main__':
-    server.start(8000, 'localhost')
+    service.start(8000, 'localhost')
+

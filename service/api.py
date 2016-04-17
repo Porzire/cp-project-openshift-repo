@@ -59,6 +59,7 @@ class MainHandler(base.BaseHandler):
         self.response['success'] = 'ok'
         self.write_response()
 
+
 class TestHandler(base.BaseHandler):
     def post(self):
         auth_token = self.request.headers.get('X-Authentication')

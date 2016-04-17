@@ -15,5 +15,7 @@ except IOError:
 if __name__ == '__main__':
    ip   = os.environ['OPENSHIFT_PYTHON_IP']
    port = int(os.environ['OPENSHIFT_PYTHON_PORT'])
+   app = imp.load_source('server', 'server.py')
 
-   imp.load_source('server', 'server.py').start(ip, port)
+   app.service.start(port, ip)
+
